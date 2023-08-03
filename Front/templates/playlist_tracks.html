@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Tracks</title>
+</head>
+<body>
+    <h1>Playlist Tracks</h1>
+    {% for track in playlist_tracks %}
+        <p>Track: {{ track.name }}</p>
+        {% if track.preview_url %}
+            <a href="{{ track.preview_url }}" target="_blank"><button>Play</button></a>
+        {% else %}
+            <p>Audio: Not available</p>
+        {% endif %}
+        {% if track.album_cover_url %}
+            <img src="{{ track.album_cover_url }}" alt="{{ track.name }} Album Cover" height="100" width="100">
+        {% else %}
+            <p>Album Cover: Not available</p>
+        {% endif %}
+        <hr>
+    {% endfor %}
+</body>
+</html>

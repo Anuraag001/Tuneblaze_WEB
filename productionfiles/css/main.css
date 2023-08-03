@@ -1,0 +1,4 @@
+#all_playlist{
+    display: flex;
+    flex-direction: row;
+}

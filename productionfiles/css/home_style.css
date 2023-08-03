@@ -1,0 +1,85 @@
+html,body{
+    background-color: black;
+    color:white;
+    height: 100%;
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    color:orange
+}
+#Navbar{
+    height:10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:10px 20px 0px 20px;
+}
+#nav-head{
+    display: flex;
+    flex-direction: row;
+}
+
+#head-text{
+    font-size: large;
+    padding-top: 10px;
+}
+
+#homepage-body{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+#homepage-body-left{
+    background-color: green;
+    display: flex;
+    width: 50%;
+    height: 90%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+    background-image: url('/static/img/music-1.webp');
+}
+
+#homepage-body-right{
+    background-color: green;
+    display: flex;
+    width: 50%;
+    height: 90%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
+    transform: scaleY(-1);
+    background-image: url('/static/img/music-2.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+#homepage-body-text-1{
+    position:relative; 
+    transform: translate(0%, -700%);
+    text-align: center;
+    font-size: xx-large;
+}
+
+#homepage-body-text-2{
+    position:relative; 
+    transform: translate(0%, -600%);
+    text-align: center;
+    font-size: xx-large;
+}
+
+#signin{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    background-color: black;
+}
+
+#signin h3{
+    text-align: center;
+}

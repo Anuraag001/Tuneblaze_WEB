@@ -1,0 +1,76 @@
+html,body{
+    background-color: black;
+    color: white;
+    height: 100%;
+    width: 100%;
+}
+
+#full_body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#header img{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+#header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: large;
+    column-gap: 10px;
+    justify-content: space-between;
+    padding:5px 5px 0px 0px;
+    height: 10%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#profile_head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20px;
+}
+
+#middle{
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#personal{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#all_playlist{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    text-align: center;
+}
+
+#language{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+#inside-language{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
