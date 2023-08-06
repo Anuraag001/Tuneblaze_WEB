@@ -89,4 +89,19 @@ def playlist_tracks(request,playlist_url):
 
         playlist_tracks = playlist_tracks[:5]
 
+
+
     return render(request, 'playlist_tracks.html', {'playlist_tracks': playlist_tracks})
+
+
+def add_to_playlist(request):
+    if request.method=='POST':
+        name=request.POST.get('track_name')
+        image_url=request.POST.get('album_cover_url')
+        audio_url=request.POST.get('preview_url')
+        user=request.user
+        playlist_create=Playlist(user=user,name=name,image_url=image_url,audio_url=audio_url)
+        playlist_create.save()
+
+        return render(request, 'playlist_tracks.html', {'playlist_tracks': playlist_tracks})
+        

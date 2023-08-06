@@ -25,7 +25,8 @@ urlpatterns = [
     path('',homepage,name='homepage'),
     path('signup/',signup,name='signup'),
     path('<int:user_id>/',signin,name='signin'),
-    path('playlist/<path:playlist_url>/',playlist_tracks,name='playlist_tracks')
+    path('playlist/<path:playlist_url>/',playlist_tracks,name='playlist_tracks'),
+    path('add_to_playlist/', add_to_playlist, name='add_to_playlist'),
 ]
 
 if settings.DEBUG:
