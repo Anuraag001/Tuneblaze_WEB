@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% block content %}
+<div id="middle">
+  
+    <div id="gap"></div>
+    <h2>Best Songs</h2>
+    <br>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="search" placeholder="Search by song,artist,language" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="border: none;"><i class="bi bi-search" ></i></button>
+    </div>
+    <br>
+    <div id="all_best_songs">
+        {% for playlist_info in playlists_info %}
+        <div id="playlist_info">
+        <a href="#">
+            <img src="{{ playlist_info.album_cover_url }}" alt="Playlist Image" height="100" width="100">
+        </a>
+        {{ playlist_info.name }}
+    </div>    
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

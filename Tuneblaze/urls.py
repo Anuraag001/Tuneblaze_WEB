@@ -27,6 +27,7 @@ urlpatterns = [
     path('<int:user_id>/',signin,name='signin'),
     path('playlist/<path:playlist_url>/',playlist_tracks,name='playlist_tracks'),
     path('add_to_playlist/', add_to_playlist, name='add_to_playlist'),
+    path('<int:user_id>/test/',test,name='test')
 ]
 
 if settings.DEBUG:

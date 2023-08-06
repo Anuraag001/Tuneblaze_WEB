@@ -16,6 +16,8 @@ playlists=['https://open.spotify.com/playlist/5muSk2zfQ3LI70S64jbrX7?si=20ed5a1e
           'https://open.spotify.com/playlist/335x6l1z0DbD1pgysYkkD8?si=cb1648b9c8b848da',
           'https://open.spotify.com/playlist/6ppm1rd8zW1FfkWkLOJd80?si=c32c4bb21fdc4fcb']
 
+Best_Songs='https://open.spotify.com/playlist/5muSk2zfQ3LI70S64jbrX7?si=e0357c01b78041c9'
+
 languages=['English','Hindi','Telugu','Kannada']
 
 # Create your views here.
@@ -103,5 +105,28 @@ def add_to_playlist(request):
         playlist_create=Playlist(user=user,name=name,image_url=image_url,audio_url=audio_url)
         playlist_create.save()
 
-        return render(request, 'playlist_tracks.html', {'playlist_tracks': playlist_tracks})
-        
+    return render(request, 'playlist_tracks.html', {'playlist_tracks': playlist_tracks})
+    
+def test(request,user_id):
+    try:
+        user = User.objects.get(id=user_id)
+        user_details = User_Data.objects.get(user=user)
+        playlist_info = spotify.playlist(Best_Songs)
+
+        playlist_tracks = []
+        for track in playlist_info['tracks']['items']:
+            track_name = track['track']['name']
+            track_preview_url = track['track']['preview_url']
+            track_album_cover_url = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
+            if(track_album_cover_url!=None):
+                playlist_tracks.append({
+                    'name': track_name,
+                    'preview_url': track_preview_url,
+                    'album_cover_url': track_album_cover_url
+                })
+
+            
+
+        return render(request, 'test.html', {'user_id': user_id, 'details': user_details, 'playlists_info': playlist_tracks})
+    except User.DoesNotExist:
+        return render(request, 'home.html')
