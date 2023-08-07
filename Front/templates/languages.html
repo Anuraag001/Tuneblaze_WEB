@@ -10,12 +10,13 @@
     </div>
     <br>
     <div id="all_best_songs">
-        {% for playlist_info in playlist_languages %}
+        {% for playlist_in in playlist_languages %}
         <div id="playlist_info">
-        <a href="#">
-            <img src="{{ playlist_info.image_url }}" alt="Playlist Image" height="100" width="100">
+            <a href="{% url 'view_album' user_id forloop.counter %}">
+
+            <img src="{{ playlist_in.image_url }}" alt="Playlist Image" height="100" width="100">
         </a>
-        <div id="trunk">{{ playlist_info.language }}</div>
+        <div id="trunk">{{ playlist_in.language }}</div>
     </div>    
         {% endfor %}
     </div>

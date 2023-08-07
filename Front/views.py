@@ -120,8 +120,7 @@ def test(request,user_id):
             track_album_cover_url = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
             if(track_album_cover_url!=None):
                 playlist_tracks.append({
-                    'name':track_name[:35] + '...' if len(track_name) > 35 else track_name
-,
+                    'name':track_name[:35] + '...' if len(track_name) > 35 else track_name,
                     'preview_url': track_preview_url,
                     'album_cover_url': track_album_cover_url
                 })
@@ -144,10 +143,34 @@ def language_zone(request,user_id):
         else:
             image_url = None
         
+        playlist_identifier = playlist.split('/playlist/')[1].rstrip('/')
         playlist_languages.append({
+                'url':playlist_identifier,
                 'image_url':image_url,
                 'language':language
             })
 
 
     return render(request, 'languages.html',{'user_id':user_id,'details':user_details,'playlist_languages': playlist_languages})
+
+def view_album(request,user_id,album_no):
+    user = User.objects.get(id=user_id)
+    user_details = User_Data.objects.get(user=user)
+    
+    playlist_info=spotify.playlist(playlists[album_no-1])
+    image_url = playlist_info['images'][0]['url']
+    playlist_name=playlist_info['name']
+
+    playlist_tracks = []
+    for track in playlist_info['tracks']['items']:
+        track_name = track['track']['name']
+        track_preview_url = track['track']['preview_url']
+        track_album_cover_url = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
+        if(track_album_cover_url!=None):
+                playlist_tracks.append({
+                'name':track_name[:35] + '...' if len(track_name) > 35 else track_name,
+                'preview_url': track_preview_url,
+                'album_cover_url': track_album_cover_url
+            })
+
+    return render(request,'view_album.html',{'user_id': user_id,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':playlist_name})

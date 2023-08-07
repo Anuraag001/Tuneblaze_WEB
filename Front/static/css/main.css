@@ -17,7 +17,7 @@ html,body{
     display: flex;
     flex-direction: column;
     width: 20%;
-    height: 95%;
+    height: 100%;
     flex-grow: 0;
     flex-shrink: 0;
     padding:2% 0% 0% 2%;
@@ -102,7 +102,7 @@ a{
 #header{
     display: flex;
     flex-direction: column;
-    height: 90%;
+    height: 100%;
     width: 80%;
     flex-grow: 0;
     flex-shrink: 0;
@@ -121,7 +121,7 @@ a{
 #middle{
     display: flex;
     flex-direction: column;
-    height: 80%;
+    height: 100%;
     flex-grow: 0;
     flex-shrink: 0;
 }
@@ -185,4 +185,75 @@ a{
 
 ::-webkit-scrollbar {
     width: 10px;
+}
+
+#full_album_show{
+    display: flex;
+    flex-direction: row;
+    height:50%;
+    width:80%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-left:10%;
+}
+
+#album_pic{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius:25px;
+}
+
+#album_pic img{
+    display:flex;
+    width: fit-content;
+    height: 100%;
+    object-fit: cover;
+    
+}
+#songs_album{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow-y: scroll;
+    padding-left: 20px;
+    
+}
+
+#album_data{
+    padding-left: 10%;
+    margin-top: 1%;
+}
+
+#each_song{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_ni{
+    display: flex;
+    flex-direction: row;
+    width:75%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    column-gap: 20px;
+    font-size: medium;
+    align-items: center;
+}
+
+#play_song{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
