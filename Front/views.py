@@ -120,7 +120,8 @@ def test(request,user_id):
             track_album_cover_url = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
             if(track_album_cover_url!=None):
                 playlist_tracks.append({
-                    'name': track_name,
+                    'name':track_name[:35] + '...' if len(track_name) > 35 else track_name
+,
                     'preview_url': track_preview_url,
                     'album_cover_url': track_album_cover_url
                 })
@@ -130,3 +131,23 @@ def test(request,user_id):
         return render(request, 'test.html', {'user_id': user_id, 'details': user_details, 'playlists_info': playlist_tracks})
     except User.DoesNotExist:
         return render(request, 'home.html')
+    
+
+def language_zone(request,user_id):
+    user = User.objects.get(id=user_id)
+    user_details = User_Data.objects.get(user=user)
+    playlist_languages=[]
+    for playlist,language in zip(playlists,languages):
+        info = spotify.playlist(playlist)
+        if info.get('images'):
+            image_url = info['images'][0]['url']
+        else:
+            image_url = None
+        
+        playlist_languages.append({
+                'image_url':image_url,
+                'language':language
+            })
+
+
+    return render(request, 'languages.html',{'user_id':user_id,'details':user_details,'playlist_languages': playlist_languages})

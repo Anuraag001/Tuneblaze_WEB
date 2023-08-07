@@ -36,6 +36,17 @@ html,body{
     
 }
 
+#trunc{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
 #web_icon p{
     font-size: large;
     padding:10px 0px 10px 0px;

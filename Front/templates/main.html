@@ -17,26 +17,33 @@
             <p>Tuneblaze</p>
         </div>
         <br>
-        <div id="web_icon">
+        <a id="web_icon" href="{% url 'test' user_id %}" style="text-decoration: none;color: white;">
             <i class="bi bi-house"  ></i>
             <div id="access_names">Home</div>  
-        </div>
+        </a>
 
-        <div id="web_icon">
+        <a id="web_icon">
             <i class="bi bi-music-note-list"></i>
             <div id="access_names">My Playlist</div>  
-        </div>
+        </a>
 
 
         <div id="web_icon">
             <i class="bi bi-journal-album"></i>
-            <div id="access_names">Albums</div>  
+            <div id="access_names">Artists</div>  
         </div>
 
 
-        <div id="web_icon">
+        <a id="web_icon" href="{% url 'languages' user_id %}" style="text-decoration: none;color: white;">
             <i class="bi bi-translate"></i>
             <div id="access_names">Language</div>  
+        </a>
+
+
+        
+        <div id="web_icon">
+            <i class="bi bi-music-note-beamed"></i>
+            <div id="access_names">Genres</div>  
         </div>
 
 

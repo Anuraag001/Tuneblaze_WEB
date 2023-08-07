@@ -1,7 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
 <div id="middle">
-  
     <div id="gap"></div>
     <h2>Best Songs</h2>
     <br>
@@ -11,16 +10,16 @@
     </div>
     <br>
     <div id="all_best_songs">
-        {% for playlist_info in playlists_info %}
+        {% for playlist_info in playlist_languages %}
         <div id="playlist_info">
         <a href="#">
-            <img src="{{ playlist_info.album_cover_url }}" alt="Playlist Image" height="100" width="100">
+            <img src="{{ playlist_info.image_url }}" alt="Playlist Image" height="100" width="100">
         </a>
-        <div id="trunk">{{ playlist_info.name }}</div>
+        <div id="trunk">{{ playlist_info.language }}</div>
     </div>    
         {% endfor %}
     </div>
+    </div>
 </div>
-
 
 {% endblock %}
