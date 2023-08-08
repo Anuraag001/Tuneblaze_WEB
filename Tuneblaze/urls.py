@@ -26,10 +26,14 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('<int:user_id>/', signin, name='signin'),
     path('playlist/<path:playlist_url>/', playlist_tracks, name='playlist_tracks'),
-    path('add_to_playlist/', add_to_playlist, name='add_to_playlist'),
+    path('<int:user_id>/add_to_playlist/', add_to_playlist, name='add_to_playlist'),
     path('<int:user_id>/test/', test, name='test'),
+    path('<int:user_id>/test/my_playlist', my_playlist, name='my_playlist'),
     path('<int:user_id>/test/languages/', language_zone, name='languages'),
-    path('<int:user_id>/test/languages/<int:album_no>/', view_album, name='view_album')
+    path('<int:user_id>/test/languages/<int:song_no>/', update_music_section_my, name='update_music_section_my'),
+    path('<int:user_id>/test/languages/<int:album_no>/', view_album, name='view_album'),
+    path('test/languages/<int:album_no>/<int:song_no>/', update_music_section, name='update_music_section'),
+    
 ]
 
 if settings.DEBUG:

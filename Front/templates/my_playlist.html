@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% block content %}
+<div id="middle">
+  
+    <div id="gap"></div>
+    
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="search" placeholder="Search by song,artist,language" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="border: none;"><i class="bi bi-search" ></i></button>
+    </div>
+    <br>
+    <div id="full_album_show">
+        <div id="album_pic">
+            <img src="{{ details.profile_picture }}" alt="Playlist Image"  style="border-radius: 0;">
+        </div>
+        <div id="songs_album">
+            {% for song in playlist_tracks %}
+            <div id="each_song">
+                <div id="song_ni">
+                    <div><img src="{{song.album_cover_url}}" alt=""></div>
+                    <div>{{song.name}}</div>
+                </div>
+                <button class="btn btn-primary" style=" width: 20px;"id="play_song" onclick="update_my(this)" data-song-id="{{ forloop.counter }}" data-user-id="{{ user_id }}" data-url="{% url 'update_music_section_my'  user_id  forloop.counter %}"></button>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="album_data">{{ playlist_name }}</div>
+</div>
+{% endblock %}

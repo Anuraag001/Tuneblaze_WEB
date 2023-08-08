@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import get_user_model
@@ -96,12 +96,12 @@ def playlist_tracks(request,playlist_url):
     return render(request, 'playlist_tracks.html', {'playlist_tracks': playlist_tracks})
 
 
-def add_to_playlist(request):
+def add_to_playlist(request,user_id):
     if request.method=='POST':
         name=request.POST.get('track_name')
         image_url=request.POST.get('album_cover_url')
         audio_url=request.POST.get('preview_url')
-        user=request.user
+        user=User.objects.get(id=user_id)
         playlist_create=Playlist(user=user,name=name,image_url=image_url,audio_url=audio_url)
         playlist_create.save()
 
@@ -173,4 +173,52 @@ def view_album(request,user_id,album_no):
                 'album_cover_url': track_album_cover_url
             })
 
-    return render(request,'view_album.html',{'user_id': user_id,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':playlist_name})
+    return render(request,'view_album.html',{'user_id': user_id,'album_id':album_no,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':playlist_name})
+
+def update_music_section(request,album_no,song_no):
+    playlist_info=spotify.playlist(playlists[album_no-1])
+    current_song=playlist_info['tracks']['items'][song_no-1]
+
+    current_song_playing={
+        'song_name':current_song['track']['name'],
+        'song_image':current_song['track']['album']['images'][0]['url'],
+        'song_audio':current_song['track']['preview_url']
+    }
+
+    return JsonResponse(current_song_playing)
+
+def my_playlist(request,user_id):
+    user = User.objects.get(id=user_id)
+    user_details=User_Data.objects.get(user=user)
+    all_tracks=Playlist.objects.filter(user=user)
+
+    name=user.first_name + user.last_name + "'s playlist"
+    image_url=user_details.profile_picture
+    playlist_tracks=[]
+    for track in all_tracks:
+        track_name = track.name
+        track_preview_url = track.audio_url
+        track_album_cover_url = track.image_url
+        if(track_album_cover_url!=None):
+                playlist_tracks.append({
+                'name':track_name[:35] + '...' if len(track_name) > 35 else track_name,
+                'preview_url': track_preview_url,
+                'album_cover_url': track_album_cover_url
+            })
+    return render(request,'my_playlist.html',{'user_id': user_id,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':name})
+
+
+def update_music_section_my(request,user_id,song_no):
+    user = User.objects.get(id=user_id)
+    user_details=User_Data.objects.get(user=user)
+    playlist=Playlist.objects.filter(user=user)
+
+    playlist=playlist[song_no-1]
+
+    current_song_playing={
+        'song_name':playlist.name,
+        'song_image':playlist.image_url,
+        'song_audio':playlist.audio_url
+    }
+    print(current_song_playing)
+    return JsonResponse(current_song_playing)

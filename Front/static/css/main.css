@@ -257,3 +257,48 @@ a{
     flex-grow: 0;
     flex-shrink: 0;
 }
+
+#present_music{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20%;
+}
+
+#song_image{
+    display: flex;
+    flex-direction: row;
+    width:6%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_name{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_audio{
+    display: flex;
+    flex-direction: row;
+    width: 44%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_controls{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+#audio-player{
+    width: 100%; /* Make the audio player take up the full width of the container */
+    color: white; /* Change the text color */
+    border: none; /* Remove the default border */
+    padding: 5px;
+    border-radius: 5px;
+}
