@@ -25,15 +25,17 @@ urlpatterns = [
     path('', homepage, name='homepage'),
     path('signup/', signup, name='signup'),
     path('<int:user_id>/', signin, name='signin'),
+    path('<int:user_id>/languages/test/', language_zone, name='languages'),
+    path('<int:user_id>/test/', test, name='test'),
+    path('<int:user_id>/my_playlist', my_playlist, name='my_playlist'),
+    path('<int:user_id>/languages/test/<int:song_no>/', update_music_section_my, name='update_music_section_my'),
+    path('<int:user_id>/test/languages/<int:album_no>/', view_album, name='view_album'),
     path('playlist/<path:playlist_url>/', playlist_tracks, name='playlist_tracks'),
     path('<int:user_id>/add_to_playlist/', add_to_playlist, name='add_to_playlist'),
-    path('<int:user_id>/test/', test, name='test'),
-    path('<int:user_id>/test/my_playlist', my_playlist, name='my_playlist'),
-    path('<int:user_id>/test/languages/', language_zone, name='languages'),
-    path('<int:user_id>/test/languages/<int:song_no>/', update_music_section_my, name='update_music_section_my'),
-    path('<int:user_id>/test/languages/<int:album_no>/', view_album, name='view_album'),
     path('test/languages/<int:album_no>/<int:song_no>/', update_music_section, name='update_music_section'),
-    
+    path('<int:user_id>/genre/test',generes,name='generes'),
+    path('<int:user_id>/generes/<str:genere>/',genere_tracks,name='genere_tracks'),
+    path('<int:user_id>/artists',all_artists,name='all_artists'),
 ]
 
 if settings.DEBUG:

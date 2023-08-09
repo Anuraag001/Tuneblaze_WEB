@@ -20,17 +20,17 @@
                     <div><img src="{{song.album_cover_url}}" alt=""></div>
                     <div>{{song.name}}</div>
                 </div>
-                <button  class="btn btn-primary" style=" width: 20px;"id="play_song" onclick="update(this)" data-song-id="{{ forloop.counter }}" data-album-id="{{ album_id }}" data-url="{% url 'update_music_section' album_id forloop.counter %}">
-                    
+                <button class="btn btn-info" style=" width: fit-content;height:70%;display: flex;flex-direction: row;align-items: center;"id="play_song" onclick="update(this)" data-song-id="{{ forloop.counter }}" data-album-id="{{ album_id }}" data-url="{% url 'update_music_section' album_id forloop.counter %}">
                     <i class="bi bi-play" style="font-size: 20px;"></i>
                 </button>
+                
                 <form method="post" action="{% url 'add_to_playlist' user_id %}">
                     {% csrf_token %}
                     <input type="hidden" name="playlist_url" value="{{ song.playlist_url }}">
                     <input type="hidden" name="track_name" value="{{ song.name }}">
                     <input type="hidden" name="album_cover_url" value="{{ song.album_cover_url }}">
                     <input type="hidden" name="preview_url" value="{{ song.preview_url }}">
-                    <button type="submit" style="width:20px">Add to Playlist</button>
+                    <button class="btn btn-dark" type="submit" style="width:fit-content;margin-left: 10px;"><i class="bi bi-plus-lg"></i></button>
                 </form>
             
             </div>

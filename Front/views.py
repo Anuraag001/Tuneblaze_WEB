@@ -222,3 +222,70 @@ def update_music_section_my(request,user_id,song_no):
     }
     print(current_song_playing)
     return JsonResponse(current_song_playing)
+
+def generate_genre_color(genre):
+    hash_value = hash(genre)
+    red = (hash_value & 0xFF0000) >> 16
+    green = (hash_value & 0x00FF00) >> 8
+    blue = hash_value & 0x0000FF
+    color = f'rgb({red}, {green}, {blue})'
+    return color
+
+def generes(request,user_id):
+    user = User.objects.get(id=user_id)
+    user_details=User_Data.objects.get(user=user)
+
+    results = spotify.recommendation_genre_seeds()
+    genre_seeds = results['genres']
+
+    genere_collection=[]
+    for each in genre_seeds:
+        genre_color=generate_genre_color(each)
+        genere_collection.append({
+            'genre_color':genre_color,
+            'genere_name':each,
+        })
+
+    '''for genere in genre_seeds:
+        recommendations = spotify.recommendations(seed_genres=[genere], limit=10)
+        for track in recommendations['tracks']:'''
+
+    return render(request,'genere.html',{'user_id':user_id,'details':user_details,'generes':genere_collection})
+
+
+def genere_tracks(request,user_id,genere):
+    user = User.objects.get(id=user_id)
+    user_details=User_Data.objects.get(user=user)
+    genere_color=generate_genre_color(genere)
+    print(genere_color)
+
+    recommendations = spotify.recommendations(seed_genres=[genere], limit=20)
+    playlist_tracks=[]
+    for track in recommendations['tracks']:
+        track_name = track['name']
+        track_preview_url = track['preview_url']
+        track_album_cover_url = track['album']['images'][0]['url'] if track['album']['images'] else None
+        if(track_album_cover_url!=None):
+                playlist_tracks.append({
+                'name':track_name[:35] + '...' if len(track_name) > 35 else track_name,
+                'preview_url': track_preview_url,
+                'album_cover_url': track_album_cover_url
+            })
+        
+
+    return render(request,'view_genere.html',{'user_id':user_id,'details':user_details,'genere':genere_color,'playlist_tracks':playlist_tracks,'genere_name':genere})
+
+def all_artists(request,user_id):
+    user = User.objects.get(id=user_id)
+    user_details=User_Data.objects.get(user=user)
+
+    '''recommended_artists = spotify.recommendation_artists()
+    recommended_artist_info = []
+    for artist in recommended_artists:
+        recommended_artist_info.append({
+            'name': artist['name'],
+            'image_url': artist['images'][0]['url'] if artist['images'] else None
+        })'''
+    
+
+    return render(request,'artists.html',{'user_id':user_id,'details':user_details})

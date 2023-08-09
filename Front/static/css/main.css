@@ -302,3 +302,50 @@ a{
     padding: 5px;
     border-radius: 5px;
 }
+
+#genere_view{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 5%;
+    column-gap: 5%;
+    background-color: "{{ genere.genre_color }}";
+    width:100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#genere{
+    display: flex;
+    flex-direction: row;
+    height: 15%;
+    width: 15%;
+    border-radius: 25px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    align-items: end;
+    font-size: large;
+    padding: 0px 20px 20px 0px;
+    transition: all 1s ease;
+}
+
+#genere:hover{
+    height: 17%;
+    width: 17%;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+#genere_pic{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius:25px;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+}

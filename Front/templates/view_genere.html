@@ -10,9 +10,7 @@
     </div>
     <br>
     <div id="full_album_show">
-        <div id="album_pic">
-            <img src="{{ details.profile_picture }}" alt="Playlist Image"  style="border-radius: 0;">
-        </div>
+        <div id="genere_pic" style="background-color: {{ genere }}">{{genere_name}}</div>
         <div id="songs_album">
             {% for song in playlist_tracks %}
             <div id="each_song">
@@ -20,9 +18,17 @@
                     <div><img src="{{song.album_cover_url}}" alt=""></div>
                     <div>{{song.name}}</div>
                 </div>
-                <button class="btn btn-info" style="width: fit-content;height:70%;display: flex;flex-direction: row;align-items: center;"id="play_song" onclick="update_my(this)" data-song-id="{{ forloop.counter }}" data-user-id="{{ user_id }}" data-url="{% url 'update_music_section_my'  user_id  forloop.counter %}">
-                    <i class="bi bi-play" style="font-size: 20px;"></i>
-                </button>
+                
+                
+                <form method="post" action="{% url 'add_to_playlist' user_id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="playlist_url" value="{{ song.playlist_url }}">
+                    <input type="hidden" name="track_name" value="{{ song.name }}">
+                    <input type="hidden" name="album_cover_url" value="{{ song.album_cover_url }}">
+                    <input type="hidden" name="preview_url" value="{{ song.preview_url }}">
+                    <button class="btn btn-dark" type="submit" style="width:fit-content;margin-left: 10px;"><i class="bi bi-plus-lg"></i></button>
+                </form>
+            
             </div>
             <br>
             {% endfor %}

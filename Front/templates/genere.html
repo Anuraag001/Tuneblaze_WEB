@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+<div id="middle">
+    <div id="gap"></div>
+    <h2>Best Songs</h2>
+    <br>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="search" placeholder="Search by song,artist,language" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="border: none;"><i class="bi bi-search" ></i></button>
+    </div>
+    <br>
+    <div id="genere_view">
+        {% for genere in generes %}
+            <div id="genere" style="background-color: {{ genere.genre_color }}">
+                <a href="{% url 'genere_tracks' user_id genere.genere_name  %}" style="text-decoration: none;color: white;">{{ genere.genere_name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
