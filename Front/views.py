@@ -205,7 +205,7 @@ def my_playlist(request,user_id):
                 'preview_url': track_preview_url,
                 'album_cover_url': track_album_cover_url
             })
-    return render(request,'my_playlist.html',{'user_id': user_id,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':name})
+    return render(request,'my_playlist.html',{'user_id': user_id,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':name,'show':playlist_tracks[0]})
 
 
 def update_music_section_my(request,user_id,song_no):
@@ -279,13 +279,18 @@ def all_artists(request,user_id):
     user = User.objects.get(id=user_id)
     user_details=User_Data.objects.get(user=user)
 
-    '''recommended_artists = spotify.recommendation_artists()
-    recommended_artist_info = []
-    for artist in recommended_artists:
-        recommended_artist_info.append({
-            'name': artist['name'],
-            'image_url': artist['images'][0]['url'] if artist['images'] else None
-        })'''
+    all_artists=[]
+    for letter in 'abcdefghijklmnopqrstuvwxyz':
+        query = letter
+        search_results = spotify.search(q=query, type='artist', limit=3)
+
+        artists = search_results['artists']['items']
+        for artist in artists:
+            all_artists.append({
+                'name': artist['name'],
+                'image': artist['images'][0]['url'] if artist['images'] else None,
+                'uri': artist['uri']
+            })
     
 
-    return render(request,'artists.html',{'user_id':user_id,'details':user_details})
+    return render(request,'artists.html',{'user_id':user_id,'details':user_details,'artists':all_artists})
