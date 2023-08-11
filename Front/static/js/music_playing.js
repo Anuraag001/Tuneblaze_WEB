@@ -40,8 +40,51 @@ function update_my(buttonElement){
         success:function(data){
             $("#song_image").html(`<img src="${data.song_image}" height="50" width="50"  style="border-radius:5px" alt="Song Image"> `);
             $("#song_name").text(data.song_name);
-            $("#song_audio").html(`<audio id="audio-player" controls><source src="${data.song_audio}" type="audio/mpeg"></audio>`),
+            $("#song_audio").html(`<audio id="audio-player" controls><source src=" https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" type="audio/mpeg"></audio>`),
            console.log('success',data)
         }
     });
 }
+
+function icon_change(){
+var play_pause_toggle = document.getElementById('play-btn');
+var play_pause_btn = document.getElementById('change_me');
+var audio_play = document.getElementById('audio-player');
+var progressbar = document.getElementsByClassName('progress-bar')[0]; // Access the first element
+
+let isplaying = false;
+
+console.log('coming inside');
+play_pause_toggle.addEventListener('click', function () {
+    if (play_pause_btn.classList.contains('bi-play-fill')) {
+        play_pause_btn.classList.remove('bi-play-fill');
+        play_pause_btn.classList.add('bi-pause-fill');
+        //console.log('pause');
+        isplaying = false; // Change isplaying to true when pausing
+        //bi bi-pause-fill
+    } else if (play_pause_btn.classList.contains('bi-pause-fill')) {
+        play_pause_btn.classList.remove('bi-pause-fill');
+        play_pause_btn.classList.add('bi-play-fill');
+        //console.log('play');
+        isplaying = true; // Change isplaying to false when playing
+    }
+
+    if (isplaying) {
+        audio_play.pause();
+        //console.log('doing');
+    } else {
+        audio_play.play(); // Use play() method to start playing
+    }
+});
+
+audio_play.addEventListener('timeupdate', function () {
+    if (isplaying) {
+        var update_time = (audio_play.currentTime / audio_play.duration) * 100;
+        progressbar.style.width = update_time + '%';
+    }
+});
+var put_data=document.getElementById('show');
+put_data.innerHTML=`${audio_play.currentTime}  /  ${audio_play.duration}`;
+    setInterval(icon_change,1000);
+}
+
