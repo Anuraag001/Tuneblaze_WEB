@@ -1,5 +1,5 @@
 html,body{
-    background-color:green;
+    background-color:black;
     color: white;
     height: 100%;
     width: 100%;
@@ -7,11 +7,56 @@ html,body{
 
 #full_body{
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    height: 90%;
     width: 100%;
     flex-grow: 0;
     flex-shrink: 0;
+}
+#access_bar{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding:2% 0% 0% 2%;
+    row-gap: 20px;
+
+}
+
+#web_icon{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 5%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    column-gap: 5px;
+    
+}
+
+#trunc{
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+#web_icon p{
+    font-size: large;
+    padding:10px 0px 10px 0px;
+}
+#web_icon i{
+    font-size: 20px;
+    padding-left: 10px;
+}
+#access_names{
+    padding:2px 0px 0px 2px;
 }
 
 #header img{
@@ -20,14 +65,25 @@ html,body{
     width: 50px;
 }
 
-#header{
+#full{
+    position:absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: large;
     column-gap: 10px;
     justify-content: space-between;
-    padding:5px 5px 0px 0px;
+    padding:10px 10px 0px 0px;
+    height: 10%;
+    width: 80%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#present_music{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     height: 10%;
     flex-grow: 0;
     flex-shrink: 0;
@@ -36,14 +92,45 @@ html,body{
 #profile_head{
     display: flex;
     flex-direction: row;
+    width:10%;
+    flex-grow: 0;
+    flex-shrink: 0;
     align-items: center;
     column-gap: 20px;
 }
 
+#header{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 80%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    row-gap: 50px;
+    overflow-y: scroll;
+}
+
+#gap{
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    width: 10%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
 #middle{
     display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#search{
+    display: flex;
     flex-direction: row;
-    height: 90%;
+    width: 25%;
+    border-radius: 25px;
     flex-grow: 0;
     flex-shrink: 0;
 }
@@ -54,6 +141,21 @@ html,body{
     width: 15%;
     flex-grow: 0;
     flex-shrink: 0;
+}
+
+#all_best_songs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap:100px;
+    row-gap: 50px;
+}
+
+#all_best_songs img{
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
 }
 
 #all_playlist{
@@ -73,4 +175,178 @@ html,body{
     display: flex;
     flex-direction: row;
     column-gap: 20px;
+}
+
+
+#playlist_info{
+    display: flex;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+#full_album_show{
+    display: flex;
+    flex-direction: row;
+    height:50%;
+    width:80%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-left:10%;
+}
+
+#album_pic{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius:25px;
+}
+
+#album_pic img{
+    display:flex;
+    width: fit-content;
+    height: 100%;
+    object-fit: cover;
+    
+}
+#songs_album{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow-y: scroll;
+    padding-left: 20px;
+    
+}
+
+#album_data{
+    padding-left: 10%;
+    margin-top: 1%;
+}
+
+#each_song{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_ni{
+    display: flex;
+    flex-direction: row;
+    width:75%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    column-gap: 20px;
+    font-size: medium;
+    align-items: center;
+}
+
+#play_song{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#present_music{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20%;
+}
+
+#song_image{
+    display: flex;
+    flex-direction: row;
+    width:6%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_name{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_audio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 44%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#song_controls{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+#audio-player{
+    width: 100%; /* Make the audio player take up the full width of the container */
+    color: white; /* Change the text color */
+    border: none; /* Remove the default border */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#genere_view{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 5%;
+    column-gap: 5%;
+    background-color: "{{ genere.genre_color }}";
+    width:100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#genere{
+    display: flex;
+    flex-direction: row;
+    height: 15%;
+    width: 15%;
+    border-radius: 25px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    align-items: end;
+    font-size: large;
+    padding: 0px 20px 20px 0px;
+    transition: all 1s ease;
+}
+
+#genere:hover{
+    height: 17%;
+    width: 17%;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+#genere_pic{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius:25px;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
 }
