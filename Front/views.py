@@ -149,9 +149,15 @@ def language_zone(request,user_id):
                 'image_url':image_url,
                 'language':language
             })
-
-
-    return render(request, 'languages.html',{'user_id':user_id,'details':user_details,'playlist_languages': playlist_languages})
+        total={
+            #'user_id':user_id,
+            #'details':user_details,
+            'playlist_languages': playlist_languages,
+        }
+        
+    #return render(request, 'languages.html',{'user_id':user_id,'details':user_details,'playlist_languages': playlist_languages})
+    return JsonResponse(playlist_languages,safe=False)
+    #return JsonResponse({'hello':1})
 
 def view_album(request,user_id,album_no):
     user = User.objects.get(id=user_id)
