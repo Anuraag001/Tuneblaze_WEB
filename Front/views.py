@@ -182,9 +182,10 @@ def update_music_section(request,album_no,song_no):
     current_song_playing={
         'song_name':current_song['track']['name'],
         'song_image':current_song['track']['album']['images'][0]['url'],
-        'song_audio':current_song['track']['preview_url']
+        'song_audio':current_song['track']['preview_url'],
+        'song_id':album_no,
     }
-
+    print(current_song_playing['song_audio'])
     return JsonResponse(current_song_playing)
 
 def my_playlist(request,user_id):
@@ -218,9 +219,11 @@ def update_music_section_my(request,user_id,song_no):
     current_song_playing={
         'song_name':playlist.name,
         'song_image':playlist.image_url,
-        'song_audio':playlist.audio_url
+        'song_audio':playlist.audio_url,
+        'song_id':song_no,
+        'user_id':user_id,
     }
-    print(current_song_playing)
+    print(current_song_playing['song_audio'])
     return JsonResponse(current_song_playing)
 
 def generate_genre_color(genre):

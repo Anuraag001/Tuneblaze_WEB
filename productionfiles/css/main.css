@@ -275,6 +275,7 @@ a{
 #song_name{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     width: 25%;
     flex-grow: 0;
     flex-shrink: 0;
@@ -284,24 +285,57 @@ a{
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 44%;
+    height: 60%;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-bottom: 20px;
+}
+#song_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 40%;
+    gap: 10px;
     flex-grow: 0;
     flex-shrink: 0;
 }
-
 #song_controls{
     display: flex;
     flex-direction: row;
-    width: 25%;
+    justify-content: center;
+    height: 40%;
+    width: 100%;
     flex-grow: 0;
     flex-shrink: 0;
+    column-gap:20px;
 }
+
 #audio-player{
     width: 100%; /* Make the audio player take up the full width of the container */
     color: white; /* Change the text color */
     border: none; /* Remove the default border */
     padding: 5px;
     border-radius: 5px;
+}
+
+#play-btn{
+    text-decoration: none;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 2px;
+}
+
+#play-btno{
+    text-decoration: none;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 2px;
 }
 
 #genere_view{

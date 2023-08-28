@@ -329,6 +329,15 @@ a{
     padding: 2px;
 }
 
+#play-btno{
+    text-decoration: none;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 2px;
+}
+
 #genere_view{
     display: flex;
     flex-direction: row;
