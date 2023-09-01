@@ -201,6 +201,7 @@ def my_playlist(request,user_id):
 
     name=user.first_name + user.last_name + "'s playlist"
     image_url=user_details.profile_picture
+    img=user_details.profile_picture.url
     playlist_tracks=[]
     for track in all_tracks:
         track_name = track.name
@@ -212,7 +213,8 @@ def my_playlist(request,user_id):
                 'preview_url': track_preview_url,
                 'album_cover_url': track_album_cover_url
             })
-    return render(request,'my_playlist.html',{'user_id': user_id,'details':user_details,'playlist_tracks':playlist_tracks,'album_url':image_url,'playlist_name':name,'show':playlist_tracks[0]})
+    whole={'playlist_tracks':playlist_tracks,'playlist_name':name,'show':playlist_tracks[0],'user_id':user_id,'album_url':img,'user_id':user_id} 
+    return JsonResponse(whole)
 
 
 def update_music_section_my(request,user_id,song_no):
@@ -321,3 +323,23 @@ def main_music_player(request,song_num):
             }
 
     return JsonResponse(playlist_tracks)
+
+
+def User_Home(request):
+    playlist_info = spotify.playlist(Best_Songs)
+
+    playlist_tracks = []
+    for track in playlist_info['tracks']['items']:
+        track_name = track['track']['name']
+        track_preview_url = track['track']['preview_url']
+        track_album_cover_url = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
+        if(track_album_cover_url!=None):
+            playlist_tracks.append({
+                'name':track_name[:35] + '...' if len(track_name) > 35 else track_name,
+                'preview_url': track_preview_url,
+                'album_cover_url': track_album_cover_url
+            })
+
+            
+
+    return JsonResponse(playlist_tracks,safe=False)

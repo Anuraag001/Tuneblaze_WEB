@@ -177,3 +177,88 @@ function main_music_update(buttonElement){
     })
 }
 
+function Home_Redirect(buttonElement){
+    var Url = $(buttonElement).data("url");
+    $('#loader').show();
+    $.ajax({
+        type:'GET',
+        url:Url,
+        success:function(data){
+            $('#song_data').empty();
+    var temp=`<div id="middle">
+  
+    <div id="gap"></div>
+    <h2>Best Songs</h2>
+    <br>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="search" placeholder="Search by song,artist,language" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="border: none;"><i class="bi bi-search" ></i></button>
+    </div>
+    <br>
+    <div id="all_best_songs">`;
+    console.log("going");
+    let i=0;
+        data.forEach(function(playlist_info){
+        temp+=`<div id="playlist_info">
+        <a onclick="main_music_update(this)" data-url="{% url 'main_music_player' ${i+1} %}">
+            <img src="${playlist_info.album_cover_url}" alt="Playlist Image" height="100" width="100">
+        </a>
+        <div id="trunk">${ playlist_info.name }</div>
+    </div>`  
+    i++; 
+        })
+    temp+=`</div> </div>`
+    $('#song_data').append(temp);
+        },
+    complete:function(data){
+        $('#loader').hide();
+    }
+    })
+}
+
+function my_play(buttonElement){
+    var Url = $(buttonElement).data("url");
+    $('#song_data').empty();
+    $.ajax({
+        type:'GET',
+        url:Url,
+        success:function(data){
+            console.log("ggg");
+            var temp=`<div id="middle">
+  
+    <div id="gap"></div>
+    
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="search" placeholder="Search by song,artist,language" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="border: none;"><i class="bi bi-search" ></i></button>
+    </div>
+    <br>
+    <div id="full_album_show">
+        <div id="album_pic">`
+        temp+=`<img src="${data.album_url}" alt="Playlist Image"  style="border-radius: 0;">
+        </div>
+        <div id="songs_album">`
+        let i=0;
+        data.playlist_tracks.forEach(function(song){
+            
+            temp+=`<div id="each_song">
+                <div id="song_ni">
+                    <div><img src="${song.album_cover_url}" alt=""></div>
+                    <div>${song.name}</div>
+                </div>
+                <button class="btn btn-info" style="width: fit-content;height:70%;display: flex;flex-direction: row;align-items: center;"id="play_song" onclick="update_my(this)" data-song-id="${i+1}" data-user-id="${data.user_id}" data-url="/${data.user_id}/languages/test/${i+1}/">
+                    <i class="bi bi-play" style="font-size: 20px;"></i>
+                </button>
+            </div>
+            <br>`
+           })
+        temp+=`</div>
+    </div>`
+    temp+=`<div id="album_data">${data.playlist_name}</div>
+</div>`
+$('#song_data').append(temp);
+        }
+    })
+}
+//temp+=`<img src="${ data.show.album_cover_url }" alt="Playlist Image"  style="border-radius: 0;">
+

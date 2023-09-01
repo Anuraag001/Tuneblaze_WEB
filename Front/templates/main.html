@@ -17,12 +17,12 @@
             <p>Tuneblaze</p>
         </div>
         <br>
-        <a id="web_icon" href="{% url 'test' user_id %}" style="text-decoration: none;color: white;">
+        <a id="web_icon" data-url="{% url 'User_Home' %}" onclick="Home_Redirect(this)" style="text-decoration: none;color: white;">
             <i class="bi bi-house"  ></i>
             <div id="access_names">Home</div>  
         </a>
 
-        <a id="web_icon" href="{% url 'my_playlist' user_id %}" style="text-decoration: none;color: white;">
+        <a id="web_icon"  data-url="{% url 'my_playlist' user_id %}" onclick="my_play(this)" style="text-decoration: none;color: white;">
             <i class="bi bi-music-note-list"></i>
             <div id="access_names">My Playlist</div>  
         </a>
