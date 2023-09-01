@@ -303,3 +303,21 @@ def all_artists(request,user_id):
     
 
     return render(request,'artists.html',{'user_id':user_id,'details':user_details,'artists':all_artists})
+
+def main_music_player(request,song_num):
+    playlist_info = spotify.playlist(Best_Songs)
+
+    #playlist_tracks = []
+    track=playlist_info['tracks']['items'][song_num-1]
+    track_name = track['track']['name']
+    print(track_name)
+    track_preview_url = track['track']['preview_url']
+    track_album_cover_url = track['track']['album']['images'][0]['url'] if track['track']['album']['images'] else None
+    if(track_album_cover_url!=None):
+            playlist_tracks={
+                'song_name':track_name[:35] + '...' if len(track_name) > 35 else track_name,
+                'song_audio': track_preview_url,
+                'song_image': track_album_cover_url
+            }
+
+    return JsonResponse(playlist_tracks)

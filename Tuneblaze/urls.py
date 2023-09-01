@@ -36,6 +36,7 @@ urlpatterns = [
     path('<int:user_id>/genre/test',generes,name='generes'),
     path('<int:user_id>/generes/<str:genere>/',genere_tracks,name='genere_tracks'),
     path('<int:user_id>/artists',all_artists,name='all_artists'),
+    path('music_update/<int:song_num>/',main_music_player,name='main_music_player'),
 ]
 
 if settings.DEBUG:

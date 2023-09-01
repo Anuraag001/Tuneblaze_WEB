@@ -13,7 +13,7 @@
     <div id="all_best_songs">
         {% for playlist_info in playlists_info %}
         <div id="playlist_info">
-        <a href="#">
+        <a onclick="main_music_update(this)" data-url="{% url 'main_music_player' forloop.counter %}">
             <img src="{{ playlist_info.album_cover_url }}" alt="Playlist Image" height="100" width="100">
         </a>
         <div id="trunk">{{ playlist_info.name }}</div>

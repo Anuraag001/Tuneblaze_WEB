@@ -159,3 +159,21 @@ function load_languages(buttonElement){
     })
 }
 
+function main_music_update(buttonElement){
+    var Url = $(buttonElement).data("url");
+    $.ajax({
+        type:'GET',
+        url:Url,
+        success:function(data){
+            $("#song_image").html(`<img src="${data.song_image}" height="50" width="50"  style="border-radius:5px" alt="Song Image"> `);
+            $("#song_name").text(data.song_name);
+            console.log(data.song_name)
+            $("#song_audio").html(`<audio id="audio-player"><source src=" ${data.song_audio}" type="audio/mpeg"></audio>
+            <div class="progress" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 10px;border-radius: 5px;width:100%">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>`),
+                $('#song_controls').html(`<div><button id="play-btno" onclick="update_my(this)" data-song-id="${data.song_id-1}" data-user-id="${data.user_id}" data-url="/${data.user_id}/languages/test/${data.song_id-1}/"><i class="bi bi-skip-backward-fill"></i></button></div><div><button id="play-btn"><i class="bi bi-play-fill" id="change_me" onclick="icon_change()"></i></button></div><div><button id="play-btno"><i class="bi bi-skip-forward-fill" onclick="update_my(this)" data-song-id="${data.song_id+1}" data-user-id="${data.user_id}" data-url="/${data.user_id}/languages/test/${data.song_id+1}/"></i></button></div>`);
+        }
+    })
+}
+
